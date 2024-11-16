@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const bikeRoutes = require('./routes/bikeRoutes');
 
 // Load env vars
 dotenv.config();
@@ -10,8 +11,11 @@ connectDB();
 
 const app = express();
 
-// Middleware to parse JSON
+// Middleware
 app.use(express.json());
+
+// Routes
+app.use('/api/bikes', bikeRoutes);
 
 // Test route
 app.get('/api/test', (req, res) => {
@@ -20,6 +24,6 @@ app.get('/api/test', (req, res) => {
 
 const PORT = process.env.PORT || 5001;
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
