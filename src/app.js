@@ -16,7 +16,7 @@ app.use(express.json());
 // Routes
 app.use('/api/bikes', bikeRoutes);
 app.get('/api/test', (req, res) => {
-    res.json({ message: 'Backend is working!' });
+    res.json({ message: 'Backend is working, CI CD verified!' });
 });
 
 const PORT = process.env.PORT || 8081;  // Change to 8081
