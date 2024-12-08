@@ -62,6 +62,44 @@ const authController = {
         }
 
 
+    },
+
+    async getMe (req, res) {
+        try {
+            const user = req.user;
+            res.status(200).json({
+                success: true,
+                data: user
+            })
+        } catch ( error ) {
+            res.status(500).json({
+                success: false,
+                error: error.message
+            })
+        }
+    },
+
+    async updateProfile(req, res) {
+        try{
+            const { name , email } = req.body;
+
+            const user = await User.findById(req.user._id)
+
+            if(name) user.name = name;
+            if(email) user.email = email;
+
+            await user.save();
+
+            res.status(200).json({
+                success: true,
+                data:user
+            })
+        } catch (error) {
+            res.status(500).json({
+                success: false,
+                error: error.message
+            })
+        }
     }
 }
 
