@@ -8,6 +8,10 @@ const cors = require('cors');  // Add this
 dotenv.config();
 connectDB();
 
+// Test env loading
+console.log('Environment variables loaded:');
+console.log('PORT:', process.env.PORT);
+console.log('TWO_FACTOR_KEY:', process.env.TWO_FACTOR_KEY);
 const app = express();
 
 // Middleware
